@@ -4,6 +4,7 @@ import com.RecipeBookBackend.model.Recipe;
 import com.RecipeBookBackend.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +19,8 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/id")
-    public Recipe getRecipe(Long id) {
+    @GetMapping("/{id}")
+    public Recipe getRecipe(@PathVariable Long id) {
         return recipeService.getRecipe(id);
     }
 }
