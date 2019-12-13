@@ -3,10 +3,7 @@ package com.RecipeBookBackend.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class Recipe extends AbstractEntity {
     @NotNull
     private @Getter @Setter String imagePath;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="recipe_id")
     private @Getter @Setter List<Ingredient> ingredients = new ArrayList<>();
 
