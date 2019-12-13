@@ -18,7 +18,7 @@ public class RecipeBookBackendApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/products")
+				registry.addMapping("/**")
 						.allowedMethods("GET", "POST", "PUT", "DELETE")
 						.allowedOrigins("http://localhost:4200");
 			}
