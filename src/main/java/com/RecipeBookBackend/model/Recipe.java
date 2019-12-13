@@ -28,6 +28,7 @@ public class Recipe extends AbstractEntity {
     private @Getter @Setter String imagePath;
 
     @OneToMany
+    @JoinColumn(name="recipe_id")
     private @Getter @Setter List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe() {
