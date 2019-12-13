@@ -1,5 +1,6 @@
 package com.RecipeBookBackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,8 +25,9 @@ public class Recipe extends AbstractEntity {
     @NotNull
     private @Getter @Setter String imagePath;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name="recipe_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private @Getter @Setter List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe() {
