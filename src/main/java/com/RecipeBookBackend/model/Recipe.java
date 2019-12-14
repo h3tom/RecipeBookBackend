@@ -13,22 +13,23 @@ import java.util.List;
 @Entity
 @Table(name = "recipes")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Getter @Setter
 public class Recipe extends AbstractEntity {
 
+    @NotNull
     @Size(min = 1)
-    @NotNull
-    private @Getter @Setter String name;
+    private String name;
 
+    @NotNull
     @Size(min = 1)
-    @NotNull
-    private @Getter @Setter String description;
+    private String description;
 
     @NotNull
-    private @Getter @Setter String imagePath;
+    private String imagePath;
 
-    @OneToMany
-    @JoinColumn(name="recipe_id")
-    private @Getter @Setter List<Ingredient> ingredients = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "recipe_id")
+    private List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe() {
     }
