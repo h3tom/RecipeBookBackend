@@ -20,11 +20,19 @@ public class RecipeService {
     }
 
     public Recipe getRecipe(Long id) {
-        return recipeRepository.getOne(id);
+        if (recipeRepository.existsById(id)) {
+            return recipeRepository.getOne(id);
+        } else {
+            return null;
+        }
     }
 
     public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
+        if (recipeRepository.count() > 0) {
+            return recipeRepository.findAll();
+        } else {
+            return null;
+        }
     }
 
     public boolean addOrUpdateRecipe(Recipe recipe) {
