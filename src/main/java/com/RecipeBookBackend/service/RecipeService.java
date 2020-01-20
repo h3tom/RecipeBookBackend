@@ -1,5 +1,7 @@
 package com.RecipeBookBackend.service;
 
+import com.RecipeBookBackend.converter.dto.RecipeConverter;
+import com.RecipeBookBackend.dto.RecipeDTO;
 import com.RecipeBookBackend.model.Recipe;
 import com.RecipeBookBackend.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,25 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public Recipe getRecipe(Long id) {
+    public RecipeDTO getRecipe(Long id) {
         if (recipeRepository.existsById(id)) {
-            return recipeRepository.getOne(id);
+            return RecipeConverter.getRecipeDTO(recipeRepository.getOne(id));
         } else {
             return null;
         }
     }
 
-    public List<Recipe> getAllRecipes() {
+    public List<RecipeDTO> getAllRecipes() {
         if (recipeRepository.count() > 0) {
-            return recipeRepository.findAll();
+            List<Recipe> recipes = recipeRepository.findAll();
+            return RecipeConverter.getRecipeDTOS(recipes);
         } else {
             return null;
         }
     }
 
-    public boolean addOrUpdateRecipe(Recipe recipe) {
+    public boolean addOrUpdateRecipe(RecipeDTO recipeDTO) {
+        Recipe recipe = RecipeConverter.getRecipe(recipeDTO);
         return recipeRepository.save(recipe).getId() != null;
     }
 
