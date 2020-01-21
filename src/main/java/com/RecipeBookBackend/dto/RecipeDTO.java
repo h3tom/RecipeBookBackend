@@ -1,11 +1,7 @@
 package com.RecipeBookBackend.dto;
 
 import com.RecipeBookBackend.dto.validated.AddRecipeValidation;
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +13,6 @@ import java.util.List;
 
 @AllArgsConstructor
 @Getter @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class RecipeDTO {
 
     @NotNull

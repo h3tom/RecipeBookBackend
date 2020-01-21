@@ -1,6 +1,5 @@
 package com.RecipeBookBackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "recipes")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Getter @Setter
 public class Recipe extends AbstractEntity {
 
