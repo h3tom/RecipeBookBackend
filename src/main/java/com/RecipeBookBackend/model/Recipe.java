@@ -1,7 +1,6 @@
 package com.RecipeBookBackend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +10,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "recipes")
-@Getter @Setter
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Recipe extends AbstractEntity {
 
     @NotNull
@@ -29,6 +32,4 @@ public class Recipe extends AbstractEntity {
     @JoinColumn(name = "recipe_id")
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    public Recipe() {
-    }
 }

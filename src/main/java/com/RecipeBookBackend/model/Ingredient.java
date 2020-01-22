@@ -1,7 +1,6 @@
 package com.RecipeBookBackend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,7 +10,11 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ingredients")
-@Getter @Setter
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Ingredient extends AbstractEntity {
 
     @NotNull
@@ -22,6 +25,4 @@ public class Ingredient extends AbstractEntity {
     @Min(1)
     private Integer amount;
 
-    public Ingredient() {
-    }
 }
