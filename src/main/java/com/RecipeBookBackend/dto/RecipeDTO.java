@@ -2,9 +2,7 @@ package com.RecipeBookBackend.dto;
 
 import com.RecipeBookBackend.dto.validated.AddRecipeValidation;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -12,7 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@Getter @Setter
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class RecipeDTO {
 
     @NotNull
@@ -26,14 +27,4 @@ public class RecipeDTO {
     @JsonProperty("ingredients")
     private List<IngredientDTO> ingredientDTOS = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "RecipeDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imagePath='" + imagePath + '\'' +
-                ", ingredientDTOS=" + ingredientDTOS +
-                '}';
-    }
 }

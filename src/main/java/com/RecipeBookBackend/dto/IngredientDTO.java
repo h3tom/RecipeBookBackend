@@ -1,14 +1,15 @@
 package com.RecipeBookBackend.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
-@Getter @Setter
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class IngredientDTO {
 
     @NotNull
@@ -18,12 +19,4 @@ public class IngredientDTO {
     @NotBlank
     private Integer amount;
 
-    @Override
-    public String toString() {
-        return "IngredientDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", amount=" + amount +
-                '}';
-    }
 }
