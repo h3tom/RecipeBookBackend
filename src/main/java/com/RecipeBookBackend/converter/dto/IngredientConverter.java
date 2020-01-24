@@ -6,6 +6,7 @@ import com.RecipeBookBackend.model.Ingredient;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Deprecated
 public class IngredientConverter {
 
     public static List<Ingredient> getIngredients(List<IngredientDTO> ingredientDTOS) {

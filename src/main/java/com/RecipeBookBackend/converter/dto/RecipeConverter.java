@@ -8,6 +8,7 @@ import com.RecipeBookBackend.model.Recipe;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Deprecated
 public class RecipeConverter {
 
     public static Recipe getRecipe(RecipeDTO recipeDTO) {
