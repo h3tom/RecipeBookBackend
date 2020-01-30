@@ -1,15 +1,18 @@
 package com.RecipeBookBackend.controller;
 
 import com.RecipeBookBackend.dto.RecipeDTO;
+import com.RecipeBookBackend.dto.response.ApiResponse;
 import com.RecipeBookBackend.dto.validated.AddRecipeValidation;
 import com.RecipeBookBackend.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.groups.Default;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,43 +27,47 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     public RecipeDTO getRecipe(@PathVariable Long id) {
         return recipeService.getRecipe(id);
     }
 
     @GetMapping("/all")
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
     public List<RecipeDTO> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
     @PostMapping(consumes = "application/json")
-    public HttpStatus addRecipe(@RequestBody @Validated({AddRecipeValidation.class}) RecipeDTO recipeDTO,
-                                BindingResult result) {
-        if (result.hasErrors()) {
-            return HttpStatus.PRECONDITION_FAILED;
-        }
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    public ResponseEntity<?> addRecipe(@Validated({AddRecipeValidation.class}) @RequestBody RecipeDTO recipeDTO) {
         if (recipeService.addOrUpdateRecipe(recipeDTO)) {
-            return HttpStatus.OK;
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentContextPath().path("/recipe/{id}")
+                    .buildAndExpand(recipeDTO.getId()).toUri();
+            return ResponseEntity.created(location).body(new ApiResponse(true, "Recipe added successfully"));
         } else {
-            return HttpStatus.PRECONDITION_FAILED;
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Cannot add new recipe"));
         }
     }
 
     @PutMapping(consumes = "application/json")
-    public HttpStatus updateRecipe(@RequestBody @Validated({Default.class}) RecipeDTO recipeDTO) {
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    public ResponseEntity<?> updateRecipe(@Validated({Default.class}) @RequestBody RecipeDTO recipeDTO) {
         if (recipeService.addOrUpdateRecipe(recipeDTO)) {
-            return HttpStatus.OK;
+            return ResponseEntity.ok().body(new ApiResponse(true, "Recipe updated successfully"));
         } else {
-            return HttpStatus.PRECONDITION_FAILED;
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Cannot update recipe"));
         }
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus deleteRecipe(@PathVariable Long id) {
+    @RolesAllowed({"ROLE_USER", "ROLE_ADMIN"})
+    public ResponseEntity<?> deleteRecipe(@PathVariable Long id) {
         if (recipeService.deleteRecipe(id)) {
-            return HttpStatus.OK;
+            return ResponseEntity.ok().body(new ApiResponse(true, "Recipe deleted successfully"));
         } else {
-            return HttpStatus.PRECONDITION_FAILED;
+            return ResponseEntity.badRequest().body(new ApiResponse(false, "Cannot delete recipe"));
         }
     }
 
