@@ -26,7 +26,7 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
+        dataSource.setUrl("jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_add31252597c6fd?reconnect=true&serverTimezone=UTC&useUnicode=yes&characterEncoding=UTF-8");
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;
