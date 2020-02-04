@@ -1,4 +1,4 @@
-package com.RecipeBookBackend.dto;
+package com.RecipeBookBackend.dto.auth;
 
 import lombok.Getter;
 import lombok.Setter;
