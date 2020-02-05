@@ -16,7 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedMethods("GET", "POST", "DELETE", "PUT")
-                .allowedOrigins("http://localhost:4200")
+                .allowedOrigins("https://hetom-recipebook.firebaseapp.com")
                 .maxAge(jwtExpirationInMs / 1000);
     }
 }
