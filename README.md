@@ -1,5 +1,5 @@
 # Recipe Book Backend
-#######JAVA #Spring Boot, Data, Security #Hibernate #MySQL #jjwt #REST #JSON
+###### #JAVA #Spring Boot, Data, Security #Hibernate #MySQL #jjwt #REST #JSON
 
 Spring boot REST API backend for Recipe Book application. Secured with (Java) JSON Web Token (in ver. 2).
 
@@ -13,7 +13,7 @@ Spring boot REST API backend for Recipe Book application. Secured with (Java) JS
 | PUT  | /recipe | Update a Recipe |
 | DELETE  | /recipe/{id} | Delete a Recipe with given id |
 
-####Ver 2.0
+#### Ver 2.0
 
 Major changes:
 + Added authorization and security with (Java) JSON Web Token
@@ -23,6 +23,6 @@ Major changes:
 + Created Converters (Entity/DTO -> DTO/Entity)
 + Created needed services and repositories
 
-####Ver 1.0 (till 06.02.2020)
+#### Ver 1.0 (till 06.02.2020)
 
 Simple backend without authorization. Two Entities and and Controller with CRUD methods (nothing fancy).
